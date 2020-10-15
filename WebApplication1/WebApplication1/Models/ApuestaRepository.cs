@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -10,8 +11,8 @@ namespace WebApplication1.Models
     {
         private MySqlConnection conect()
         {
-            String connString = "";
-            MySqlConnection con = MySqlConnection(connString);
+            String connString = "Server=127.0.0.1;Port=3306;Database=placemybet;Uid=root;password=;SslMode=none";
+            MySqlConnection con = new MySqlConnection(connString);
             return con;
 
         }
@@ -19,21 +20,19 @@ namespace WebApplication1.Models
         {
             MySqlConnection con = conect();
             MySqlCommand command = con.CreateCommand();
-            command.commandText = "select * from Apuesta";
+            command.CommandText = "select * from Apuesta";
 
             con.Open();
-            MysqlDataReader res = command.ExecuteReader();
+            MySqlDataReader res = command.ExecuteReader();
 
             Apuesta a = null;
 
-            if (res.read())
+            if (res.Read())
             {
-                Debug.writeLine("Recuperado: " + res.GetInt32(0) + " " + res.GetString(1) + " " + res.GetString(2) + " " + res.GetString(3));
-               a = new Apuesta(res.GetInt32(0), res.GetInt(1), res.GetInt(2), res.GetInt(3));
+                Debug.WriteLine("Recuperado: " + res.GetInt32(0) + " " + res.GetDateTime(1) + " " + res.GetInt32(2) + " " + res.GetString(3));
+               a = new Apuesta(res.GetInt32(0), res.GetDateTime(1), res.GetInt32(2), res.GetString(3));
 
             }
-
-
 
 
             return a;

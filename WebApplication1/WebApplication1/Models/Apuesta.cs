@@ -7,7 +7,7 @@ namespace WebApplication1.Models
 {
     public class Apuesta
     {
-            public Apuesta(int id, int fecha, int cuota, int tipoApuesta)
+            public Apuesta(int id, DateTime fecha, int cuota, string tipoApuesta)
             {
                 Id = id;
                 Fecha = fecha;
@@ -16,9 +16,9 @@ namespace WebApplication1.Models
             }
 
             public int Id { get; set; }
-            public int Fecha { get; set; }
+            public DateTime Fecha { get; set; }
             public int Cuota { get; set; }
-            public int TipoApuesta { get; set; }
+            public string TipoApuesta { get; set; }
 
         
     }
