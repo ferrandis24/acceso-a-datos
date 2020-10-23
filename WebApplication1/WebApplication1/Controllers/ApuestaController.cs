@@ -11,23 +11,18 @@ namespace WebApplication1.Controllers
     public class ApuestaController : ApiController
     {
         // GET: api/Apuesta
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/Apuesta/5
-        public Apuesta Get(int id)
+        public ApuestaDTO Get()
         {
             var repo = new ApuestaRepository();
-            Apuesta a = repo.Retrieve();
+            //Apuesta a = repo.Retrieve();
+            ApuestaDTO a = repo.RetrieveDTO();
             return a;
-            
         }
 
         // POST: api/Apuesta
-        public void Post([FromBody]string value)
+        public void Post([FromBody]ApuestaDTO apuesta)
         {
+           
         }
 
         // PUT: api/Apuesta/5
